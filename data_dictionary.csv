@@ -1,0 +1,17 @@
+column,type,description,origin,notes / valid values
+CustomerID,string,"Unique customer identifier, format CUST-####",raw,"Primary key; unique, 15 values"
+Gender,category,Customer gender,raw,Female / Male
+Age,int,Customer age in years,raw,Valid range 18-100; observed 23-60
+TenureMonths,int,Months as a customer,raw,Observed 2-48
+SubscriptionType,ordered category,Plan tier,raw,Basic < Pro < Enterprise (one fixed price per tier)
+MonthlyCharges,float,Monthly bill (currency not stated in source),raw,49.99 / 79.99 / 149.99
+TotalCharges,float,Lifetime billed amount,raw,Equals MonthlyCharges x TenureMonths for every row
+ContractType,ordered category,Contract length,raw,Month-to-Month < One Year < Two Year
+SupportTickets,int,Number of support tickets raised,raw,Observed 0-6
+PaymentMethod,category,Payment channel,raw,"Credit Card, Debit Card, UPI, Bank Transfer"
+Churn,category,Whether the customer churned,raw,Yes / No
+ChurnFlag,int,Binary churn target,derived,"1 = Yes, 0 = No"
+AgeBand,category,Age group,derived,"18-29, 30-39, 40-49, 50+"
+TenureBand,category,Tenure group,derived,"0-6m, 7-12m, 13-24m, 25m+"
+ExpectedTotalCharges,float,MonthlyCharges x TenureMonths,derived,Reconciliation helper
+TotalChargesGap,float,TotalCharges - ExpectedTotalCharges,derived,0.00 for all rows
